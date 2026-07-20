@@ -45,7 +45,26 @@ export function NavUser({
   const pathname = usePathname;
 
   return (
-    <SidebarMenu>
+    <SidebarMenu className="data-active:bg-sidebar-primary/10 px-3 py-2 rounded-lg" > {/* tem que navegar para a pagina de conta*/}
+      <SidebarMenuItem className="flex items-center gap-4" >
+        <Avatar className="size-8 rounded-lg grayscale">
+          <AvatarImage src={user.avatar} alt={user.name} />
+          <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+        </Avatar>
+        <div className="flex flex-col text-left text-sm leading-tight">
+          <span className="truncate font-medium">{user.name}</span>
+          <span className="truncate text-xs text-foreground/70">
+            {user.email}
+          </span>
+        </div>
+      </SidebarMenuItem>
+    </SidebarMenu>
+  );
+}
+
+/* 
+
+<SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger
@@ -71,53 +90,16 @@ export function NavUser({
             align="end"
             sideOffset={4}
           >
-            <DropdownMenuGroup>
-              <DropdownMenuLabel className="p-0 font-normal">
-                <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                  <Avatar className="size-8">
-                    <AvatarImage src={user.avatar} alt={user.name} />
-                    <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-                  </Avatar>
-                  <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-medium">{user.name}</span>
-                    <span className="truncate text-xs text-muted-foreground">
-                      {user.email}
-                    </span>
-                  </div>
-                </div>
-              </DropdownMenuLabel>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              {items.map((item) => (
-                <DropdownMenuItem
-                  render={
-                    <Link href={item.url}>
-                      {item.icon}
-                      <span>{item.title}</span>
-                    </Link>
-                  }
-                >
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            {/* <DropdownMenuItem
-              isActive={pathname === item.url}
-              className="data-active:bg-sidebar-primary/10 data-active:text-sidebar-primary data-active:hover:bg-sidebar-primary/10 data-active:hover:text-sidebar-primary"
-              render={
-                <Link href="/">
-                  {item.icon}
-                  <span>{item.title}</span>
-                </Link>
-              }
-            >
+            <DropdownMenuItem className="data-active:bg-sidebar-primary/10 data-active:text-sidebar-primary data-active:hover:bg-sidebar-primary/10 data-active:hover:text-sidebar-primary">
               <LogOut />
               Log out
-            </DropdownMenuItem> */}
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  );
-}
+
+quero colocar a mesma lógica de dropdown com logout no avatar que fica no header
+
+
+*/
